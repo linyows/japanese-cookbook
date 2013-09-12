@@ -7,6 +7,7 @@ when 'redhat', 'centos'
     code <<-EOC
       yum -y groupinstall "Japanese Support"
     EOC
+    not_if 'test $LANG = ja_JP.UTF-8'
   end
 
 when 'ubuntu'
@@ -30,7 +31,6 @@ when 'ubuntu'
       update-locale LANG=ja_JP.UTF-8
       echo "LC_ALL=ja_JP.UTF-8" >> /etc/default/locale
     EOC
-
     not_if 'test $LANG = ja_JP.UTF-8'
   end
 end
